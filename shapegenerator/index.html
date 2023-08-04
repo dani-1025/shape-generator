@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shape Generator</title>
+</head>
+<body style="height: 100%; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background-image: linear-gradient(to bottom right, #865d5d, #8267ff); background-repeat: no-repeat; background-size: cover;">
+  <div style="text-align: center; margin-bottom: 20px;">
+    <label for="shape" style="margin-right: 10px;">Select Shape:</label>
+    <select id="shape">
+      <option value="circle">Circle</option>
+      <option value="rectangle">Rectangle</option>
+      <option value="square">Square</option>
+    </select>
+    <br>
+
+    <label for="color" style="margin-right: 10px;">Select Color:</label>
+    <input type="color" id="color" value="#ff0000">
+    <br>
+
+    <label for="number" style="margin-right: 10px;">Number of Shapes:</label>
+    <input type="number" id="number" value="5" min="1" max="100">
+    <br>
+    
+    <button onclick="generateShapes()" style="margin-top: 10px;">Generate Shapes</button>
+    <button onclick="location.reload()" style="margin-top: 10px;">Refresh</button>
+  </div>
+
+  <div id="shape-container" style="display: flex; flex-wrap: wrap; justify-content: center; max-width: 100%;"></div>
+
+  <script>
+    function generateShapes() {
+      const shapeContainer = document.getElementById("shape-container");
+      const shapeType = document.getElementById("shape").value;
+      const color = document.getElementById("color").value;
+      const numberOfShapes = parseInt(document.getElementById("number").value);
+
+      for (let i = 0; i < numberOfShapes; i++) {
+        const shape = document.createElement("div");
+        shape.style.margin = "10px";
+
+        if (shapeType === "circle") {
+          shape.style.width = "50px";
+          shape.style.height = "50px";
+          shape.style.borderRadius = "50%";
+        } else if (shapeType === "rectangle") {
+          shape.style.width = "100px";
+          shape.style.height = "50px";
+        } else if (shapeType === "square") {
+          shape.style.width = "50px";
+          shape.style.height = "50px";
+        }
+
+        shape.style.backgroundColor = color;
+        shapeContainer.appendChild(shape);
+      }
+    }
+  </script>
+</body>
+</html>
